@@ -1,0 +1,66 @@
+
+<#Info del PS#>>
+$PSVersionTable
+(Get-Command).count
+
+<#Se debe instalar Remote Server Administration Tools for windows
+para tener todos los comandos#>
+
+<#Obtener lista de servicios#>
+Get-Service
+Get-Service | Where-Object Status -EQ 'stopped'
+Get-Service | Where-Object Status -EQ 'stopped'   | Select-Object name, status
+
+
+<#Obtener lista de servicios en una variable y desplegar el valor#>
+$data = Get-Service | Where-Object Status -EQ 'stopped'   | Select-Object name, status
+$data
+
+<#Obtener lista de servicios en una variable y guardarlo en archivo#>
+$data = Get-Service | Where-Object Status -EQ 'stopped'   | Select-Object name, status
+$data | Out-File ./services.txt
+cat .\services.txt
+$data | Export-Csv ./services.scv
+Get-Content .\services.scv
+notepad .\services.txt
+
+<#Verbs#>
+(Get-Verb).count
+Get-Verb | more
+Get-Verb -Verb Set | more
+Get-Verb -Verb Set | Format-List
+Get-Verb -Verb Add | Format-List
+
+<#No esta funcionando con la versión que tengo#>
+Get-Verb -Group Common | Format-List 
+Get-Verb -Group Security
+
+<#De esta forma si funciona#>
+Get-Verb | Sort-Object -Property Group
+Get-Verb | Select-Object -Property Group, Verb
+
+<#Aliases#>
+
+Get-Alias | more
+Get-Alias -Definition *service*
+Get-Process | Sort-Object -Property CPU
+
+<#Obtener ayuda#>
+Get-Service -Name M*
+help Get-Service
+help Get-Service -examples
+Get-Service "wmi*"
+
+<#Los comandos impornntes#>
+Get-Command
+Get-Command -Name *Azure*
+
+Get-Help -Name Get-Command -detailed
+Get-Help -Name Get-Member -detailed
+
+
+
+
+
+
+
